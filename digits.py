@@ -13,6 +13,12 @@ from sklearn.grid_search import GridSearchCV
 from PIL import Image, ImageFilter
 from sklearn.neighbors.base import _get_weights
 
+'''
+Задача классификации цифр с сайта Kaggle. Дана обучающая выборка - фототграфии цифр и ответ - какой цифрой является
+данная фотография. Задача - классифицировать тестовую выборку. Я сделал это с помощью алгоритма knn - n ближайших
+соседей. Данная задача - стандартная задача машинного обучения
+'''
+
 def create_rotated_images(x_train, y_train, angles):
     '''
     Поворот цифр выборки на +-angle

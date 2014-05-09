@@ -6,6 +6,9 @@
 #include <algorithm>
 #include <time.h>
 
+// Реализация абстрактного типа данных - очередь с приоритетом. Написана реализация Binary_Heap
+
+// Класс, который будет лежать в узле кучи
 template <class T, class U>
 class Data {
 public:
@@ -43,9 +46,11 @@ private:
 	U value;
 };
 
+// Бинарная куча
 template <class T>
 class BinaryHeap {
 public:
+	// Исключение, которое будет бросаться при попытке вытащить элемент из пустой кучи
 	class EmptyQueue : public std::exception {
 	public:
 		virtual const char* what() const throw() {
@@ -56,12 +61,14 @@ public:
 	BinaryHeap() : heap_size(0) {
 	}
 
+	// Построение кучи по массиву
 	BinaryHeap(const std::vector<T> &array) : heap_size(array.size()), heap(array) {
 		for (size_t i = heap_size / 2; i >= 0; i--) {
 			heapify(i);
 		}
 	}
 
+	// Добавление нового элемента
 	void add(const T &value) {
 		heap.push_back(value);
 		
@@ -76,6 +83,7 @@ public:
 		heap_size++;
 	}
 
+	// Удаление элеемента с наибольшим приоритетом
 	void pop() {
 		if (empty()) {
 			throw EmptyQueue();
@@ -87,6 +95,8 @@ public:
 		heapify(0);
 	}
 
+
+	// сортировка массива с помощью кучи
 	std::vector<T> sort(const std::vector<T> &array) const {
 		BinaryHeap sorting_heap(array);
 		std::vector<T> sorted;
@@ -100,6 +110,7 @@ public:
 		return sorted;
 	}
 
+	// возвращает элемент с наибольшим приоритетом
 	const T& top() const {
 		if (empty()) {
 			throw EmptyQueue();
@@ -108,15 +119,18 @@ public:
 		return heap[0];
 	}
 
+	// возвращает размер кучи
 	int size() const {
 		return heap_size;
 	}
 
+	// Проверка кучи на пустоту 
 	bool empty() const {
 		return heap_size == 0;
 	}
 
 private:
+	// Перестройка кучи
 	void heapify(size_t index) {
 		if (heap_size == 0) {
 			return;
@@ -146,6 +160,8 @@ private:
 	size_t heap_size;
 };
 
+
+// Случайные тесты
 bool RandomTests(size_t size) {
 	BinaryHeap<Data<int, std::string> > heap;
 	bool is_correct = true;

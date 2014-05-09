@@ -1,11 +1,14 @@
-package shell;
+﻿package shell;
 
 import java.io.*;
 import java.util.*;
 /**
  *
  * @author Акмал
+ * Интерпретатор команд операционной системы. Реализованы самые простые команды, такие как удалить файл/директорию (rm), создать директорию (mkdir),
+ * переместить файл/директорию (mv) и узнать свое местоположению в файловой системе (cd)
  */
+
 public class Shell {
     public static String path;
     public static boolean is_console;

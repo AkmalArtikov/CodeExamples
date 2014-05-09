@@ -5,6 +5,9 @@
 #include <vector>
 #include <algorithm>
 
+// Поиск мостов в графе. Мостом является ребро, при удалении которого граф распадается на 2 компоненты связности
+
+// Класс ребра
 class Edge
 {
 public:
@@ -38,6 +41,7 @@ private:
 	int num;
 };
 
+// Класс граф, представленный списком смежности
 class Graph
 {
 public:	
@@ -64,6 +68,7 @@ public:
 		return a[v];
 	}
 
+	// Проверка на кратные ребра
 	bool IsMono (const Edge &e) const
 	{
 		int num = 0;
@@ -81,6 +86,7 @@ private:
 	std::vector<std::vector <Edge> > a;
 };
 
+// Алгроитм поиска мостов
 class BridgesFinder
 {
 public:
@@ -91,6 +97,7 @@ public:
 				Dfs(i, -1);
 	}
 
+	// Модифицированный поиск в глубину, который ищет мосты
 	void Dfs(const int v, const int parent)
 	{
 		used[v] = true;
@@ -131,6 +138,7 @@ private:
 	int time;
 };
 
+// Чтение графа
 void EdgesIn(Graph &g)
 {
 	int num_vertex, num_edges;
@@ -144,6 +152,7 @@ void EdgesIn(Graph &g)
 	}
 }
 
+// Вывод списка мостов
 void BridgesOut(std::vector<int> bridges)
 {
 	sort(bridges.begin(), bridges.end());
