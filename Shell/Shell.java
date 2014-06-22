@@ -5,14 +5,14 @@ import java.util.*;
 /**
  *
  * @author Акмал
- * Интерпретатор команд операционной системы. Реализованы самые простые команды, такие как удалить файл/директорию (rm), создать директорию (mkdir),
- * переместить файл/директорию (mv) и узнать свое местоположению в файловой системе (cd)
  */
 
 public class Shell {
     public static String path;
     public static boolean is_console;
     
+
+// Copying file method (other methods use it)
     public static boolean copyfile(File from, File to, String command) 
     {
         FileInputStream is = null;
@@ -53,6 +53,7 @@ public class Shell {
         return false;
     }
     
+//Command copy
     public static boolean copy(File from, File to, String command) 
     {
         File to2 = to;
@@ -97,6 +98,7 @@ public class Shell {
         return true;
     }
     
+//Command delete directory
     public static boolean delete_directory(File directory) 
     {
         try 
@@ -130,6 +132,7 @@ public class Shell {
         return false;
     }
     
+//Gets the number of commands
     public static boolean commands_number(ArrayList<String> args, int size) 
      {
         if (args.size() < size) 
@@ -144,6 +147,7 @@ public class Shell {
         return true;
     }
     
+//Command move file
     public static boolean movefile(File from, File to) 
     {
         if (!copy(from, to, "mv")) 
@@ -162,6 +166,7 @@ public class Shell {
         return true;
     }
     
+//Parsing input information on commands
     public static ArrayList<String> parser(String s) 
     {
         ArrayList<String> comm = new ArrayList<String>();
@@ -200,6 +205,7 @@ public class Shell {
         return comm;
     }
     
+//Process existing commands
     public static boolean exist_command(String s)
     {
         switch (s.replaceAll("\\s+", "")) 

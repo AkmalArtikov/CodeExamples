@@ -6,9 +6,7 @@
 #include <algorithm>
 #include <time.h>
 
-// Реализация абстрактного типа данных - очередь с приоритетом. Написана реализация Binary_Heap
-
-// Класс, который будет лежать в узле кучи
+// Node class
 template <class T, class U>
 class Data {
 public:
@@ -46,11 +44,11 @@ private:
 	U value;
 };
 
-// Бинарная куча
+// Binary Heap Class
 template <class T>
 class BinaryHeap {
 public:
-	// Исключение, которое будет бросаться при попытке вытащить элемент из пустой кучи
+	// Exception which will be thrown if you get element from empty heap
 	class EmptyQueue : public std::exception {
 	public:
 		virtual const char* what() const throw() {
@@ -61,14 +59,14 @@ public:
 	BinaryHeap() : heap_size(0) {
 	}
 
-	// Построение кучи по массиву
+	// Building a heap from array
 	BinaryHeap(const std::vector<T> &array) : heap_size(array.size()), heap(array) {
 		for (size_t i = heap_size / 2; i >= 0; i--) {
 			heapify(i);
 		}
 	}
 
-	// Добавление нового элемента
+	// Adding new element
 	void add(const T &value) {
 		heap.push_back(value);
 		
@@ -83,7 +81,7 @@ public:
 		heap_size++;
 	}
 
-	// Удаление элеемента с наибольшим приоритетом
+	// Deleting element with maximum priority
 	void pop() {
 		if (empty()) {
 			throw EmptyQueue();
@@ -96,7 +94,7 @@ public:
 	}
 
 
-	// сортировка массива с помощью кучи
+	// Sorting array
 	std::vector<T> sort(const std::vector<T> &array) const {
 		BinaryHeap sorting_heap(array);
 		std::vector<T> sorted;
@@ -110,7 +108,7 @@ public:
 		return sorted;
 	}
 
-	// возвращает элемент с наибольшим приоритетом
+	// Extract element with maximum priority
 	const T& top() const {
 		if (empty()) {
 			throw EmptyQueue();
@@ -119,18 +117,18 @@ public:
 		return heap[0];
 	}
 
-	// возвращает размер кучи
+	// Returns the size of heap
 	int size() const {
 		return heap_size;
 	}
 
-	// Проверка кучи на пустоту 
+	// Checking heap on emptiness
 	bool empty() const {
 		return heap_size == 0;
 	}
 
 private:
-	// Перестройка кучи
+	// Restructuring heap
 	void heapify(size_t index) {
 		if (heap_size == 0) {
 			return;
@@ -161,7 +159,7 @@ private:
 };
 
 
-// Случайные тесты
+// Random tests for heap
 bool RandomTests(size_t size) {
 	BinaryHeap<Data<int, std::string> > heap;
 	bool is_correct = true;

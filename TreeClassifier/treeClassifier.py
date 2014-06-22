@@ -3,12 +3,6 @@ import pandas as pd
 from collections import Counter
 import math
 
-'''
-Задача классификации людей с сайта Kaggle. Дана обучающая выборка - информация о людях  и ответ - зарабатывают ли они
-<50k$ в год, или больше . Задача - классифицировать тестовую выборку. Я сделал это с помощью алгоритма решающего дерева.
-Данная задача - стандартная задача машинного обучения
-'''
-
 def get_values(data, attribute):
     """
     Returns array of unique attribute values in data
